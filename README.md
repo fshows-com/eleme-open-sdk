@@ -310,4 +310,4 @@ System.out.println("response=" + JSON.toJSONString(response));
 
 ## License
 
-[Apache License 2.0 © fshows.com](../LICENSE)
+[Apache License 2.0 © fshows.com](https://github.com/fshows-com/eleme-open-sdk/blob/master/LICENSE)
