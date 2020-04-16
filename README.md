@@ -1,24 +1,43 @@
 # Eleme-open-sdk
 
-饿了么蜂鸟跑腿 JAVA SDK，通过蜂鸟跑腿官方API进行封装。
+饿了么蜂鸟跑腿 JAVA SDK，通过蜂鸟跑腿官方API进行封装。[官网API文档](http://isv-pt.alta.elenet.me/docs#/)
 
+## 目录
 
-[官网API文档](http://isv-pt.alta.elenet.me/docs#/)<br />
+- [背景](#背景)
+- [打包和安装](#打包和安装)
+- [使用方式](#使用方式)
+- [贡献者](#贡献者)
+- [License](#license)
 
-# Java SDK FAQ
+## 背景
 
-## 安装依赖
-<a>推荐通过Maven来管理项目依赖，您只需在项目的`pom.xml`文件中声明如下依赖</a>
+TODO
+
+## 打包和安装
+
+### maven本地打包
+```mvn clean install -Dmaven.test.skip=true```
+
+### maven 中央仓库
+
 ```xml
-正在申请中。。。
+
+<dependency>
+  <groupId>com.fshows.sdk</groupId>
+   <artifactId>eleme-open-sdk</artifactId>
+   <version>1.0-SNAPSHOT</version>
+</dependency>
+
 ```
 
-## 快速使用
-### 1、初始化客户端
+## 使用方式
+
+### 1. 初始化客户端
 ```java
 ElemeClient elemeClient = new DefaultElemeClient(serverUrl,appid, secretKey);
 ```
-### 2、接口请求获取凭证接口(Token)
+### 2. 接口请求获取凭证接口(Token)
 ```java
 ElemeTokenRequest request = new ElemeTokenRequest();
 request.setAppid(appid);
@@ -28,7 +47,7 @@ request.setRefresh(0);
 ElemeTokenResponse response = elemeClient.execute(request);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 3、授权页获取凭证接口(AuthToken)
+### 3. 授权页获取凭证接口(AuthToken)
 ```java
 ElemeAuthTokenRequest request = new ElemeAuthTokenRequest();
 request.setAppid(appid);
@@ -36,14 +55,14 @@ request.setTime(System.currentTimeMillis() / 1000);
 ElemeAuthTokenResponse response = elemeClient.execute(request);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 4、查询余额接口
+### 4. 查询余额接口
 ```java
 ElemeQueryAmountRequest request = new ElemeQueryAmountRequest();
 request.setUserId(userId);
 ElemeQueryAmountResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 5、用户上传图片接口
+### 5. 用户上传图片接口
 ```java
 String fileName = "/Users/coderma/Downloads/yyzz.png";
 String fileType = FileUtil.getType(new File(fileName));
@@ -56,7 +75,7 @@ request.setFileBinary(fileBinary);
 ElemeUploadFileResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 6、创建门店&新增门店接口
+### 6. 创建门店&新增门店接口
 ```java
 ElemeUploadFileResponse ownerIdcard = JSON.parseObject("{\"hash\":\"xxx\",\"url\":\"xxx\"}",ElemeUploadFileResponse.class);
 
@@ -83,7 +102,7 @@ request.setBusinessLicenceUrl(ownerIdcard.getUrl());
 ElemeCreateShopResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 7、修改门店信息接口
+### 7. 修改门店信息接口
 ```java
 ElemeModifyShopRequest request = new ElemeModifyShopRequest();
 request.setUserId(userId);
@@ -101,7 +120,7 @@ request.setShopCategory("105");
 ElemeModifyShopResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 8、查询门店列表接口
+### 8. 查询门店列表接口
 ```java
 ElemeQueryShopListRequest request = new ElemeQueryShopListRequest();
 request.setUserId(userId);
@@ -110,13 +129,13 @@ request.setPageSize(20);
 ElemeQueryShopListResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 9、获取商户品类列表接口
+### 9. 获取商户品类列表接口
 ```java
 ElemeShopCategoryListRequest request = new ElemeShopCategoryListRequest();
 ElemeShopCategoryListResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 10、查询门店信息接口
+### 10. 查询门店信息接口
 ```java
 ElemeShopDetailRequest request = new ElemeShopDetailRequest();
 request.setUserId(userId);
@@ -124,7 +143,7 @@ request.setShopId(elemeShopId);
 ElemeShopDetailResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 11、订单预取消接口
+### 11. 订单预取消接口
 ```java
 ElemeQueryCancelPriceRequest request = new ElemeQueryCancelPriceRequest();
 request.setAppid(appid);
@@ -135,7 +154,7 @@ request.setOrderReasonCode(null);
 ElemeQueryCancelPriceResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 12、获取取消原因列表接口（取消文案的返回）
+### 12. 获取取消原因列表接口（取消文案的返回）
 ```java
 ElemeQueryOrderCancelmessageRequest request = new ElemeQueryOrderCancelmessageRequest();
 request.setOrderNo("");
@@ -143,7 +162,7 @@ request.setUserId(userId);
 ElemeQueryOrderCancelMessageResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 13、订单取消接口
+### 13. 订单取消接口
 ```java
 ElemeCannelOrderRequest request = new ElemeCannelOrderRequest();
 request.setOrderNo("");
@@ -155,7 +174,7 @@ request.setAppid(appid);
 ElemeCannelOrderResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 14、询标品接口
+### 14. 询标品接口
 ```java
 ElemeQueryAvailableProductListRequest request = new ElemeQueryAvailableProductListRequest();
 request.setShopId(elemeShopId);
@@ -165,7 +184,7 @@ request.setExpectFetchTime("1586232000000");
 List<ElemeQueryAvailableProductListResponse> responses = elemeClient.executeArray(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(responses));
 ```
-### 15、询价接口
+### 15. 询价接口
 ```java
 ElemeQueryOrderPriceRequest request = new ElemeQueryOrderPriceRequest();
 request.setUserId(userId);
@@ -184,7 +203,7 @@ request.setInsureBusiOrderNo("");
 ElemeQueryOrderPriceResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 16、创建订单接口
+### 16. 创建订单接口
 ```java
 ElemeCreateOrderRequest request = new ElemeCreateOrderRequest();
 request.setUserId(userId);
@@ -216,7 +235,7 @@ request.setPredictDuration(0);
 ElemeCreateOrderResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 17、获取货损险套餐列表接口
+### 17. 获取货损险套餐列表接口
 ```java
 ElemeQueryGoodsInsurancePackageRequest request = new ElemeQueryGoodsInsurancePackageRequest();
 request.setUserId(userId);
@@ -224,7 +243,7 @@ request.setAppid(appid);
 List<ElemeQueryGoodsInsurancePackageResponse> responseList = elemeClient.executeArray(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(responseList));
 ```
-### 18、获取投保人信息接口
+### 18. 获取投保人信息接口
 ```java
 //统一结算不能访问该接口获取身份信息
 ElemeQueryInsuredPersonInfoRequest request = new ElemeQueryInsuredPersonInfoRequest();
@@ -233,7 +252,7 @@ request.setUserId(userId);
 ElemeQueryInsuredPersonInfoResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 19、核保接口
+### 19. 核保接口
 ```java
 ElemePreinsuranceRequest request = new ElemePreinsuranceRequest();
 request.setPersonName("马克思");
@@ -247,7 +266,7 @@ request.setAppid(appid);
 ElemePreinsuranceResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 20、订单加调度费接口
+### 20. 订单加调度费接口
 ```java
 ElemeAddTipRequest request = new ElemeAddTipRequest();
 request.setAddTipPrice(100);
@@ -257,7 +276,7 @@ request.setBusinessSn("");
 ElemeAddTipResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 21、查询订单详情接口
+### 21. 查询订单详情接口
 ```java
 ElemeQueryOrderDetailRequest request = new ElemeQueryOrderDetailRequest();
 request.setAppid(appid);
@@ -266,7 +285,7 @@ request.setOrderNo("");
 ElemeQueryOrderDetailResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
-### 22、查询骑手信息接口
+### 22. 查询骑手信息接口
 ```java
 ElemeQueryKnightInfoRequest request = new ElemeQueryKnightInfoRequest();
 request.setUserId(userId);
@@ -275,3 +294,19 @@ request.setOrderNo("");
 ElemeQueryKnightInfoResponse response = elemeClient.execute(request, token, userId);
 System.out.println("response=" + JSON.toJSONString(response));
 ```
+## 维护者
+
+[@Maweiming](https://github.com/Maweiming)
+
+## 如何贡献
+
+非常欢迎你的加入! [提一个Issue](https://github.com/fshows-com/eleme-open-sdk/issues/new) 或者提交一个 Pull Request.
+
+### 贡献者
+感谢以下参与项目的人：
++ [@Maweiming](https://github.com/Maweiming)
++ [@wjn161](https://github.com/wjn161)
+
+## License
+
+[Apache License 2.0 © fshows.com](../LICENSE)
