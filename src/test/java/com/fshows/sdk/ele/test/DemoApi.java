@@ -180,7 +180,7 @@ public class DemoApi {
         request.setShopDetailAddress("杭州市西湖区丰盛九玺12撞21楼");//0000,
         request.setShopLongitude("120.068390");
         request.setShopLatitude("30.328831");
-//105:夜宵烧烤
+        //105:夜宵烧烤
         request.setShopCategory("105");
         request.setShopOwnerName("张三");
         request.setShopOwnerIdcard("50013445930629842003");
@@ -209,7 +209,7 @@ public class DemoApi {
         request.setShopDetailAddress("杭州市西湖区丰盛九玺12撞22楼");//0000,
         request.setShopLongitude("120.068390");
         request.setShopLatitude("30.328831");
-//105:夜宵烧烤
+        //105:夜宵烧烤
         request.setShopCategory("105");
 
         ElemeModifyShopResponse response = elemeClient.execute(request, token, userId);
@@ -384,7 +384,7 @@ public class DemoApi {
      */
     @Test
     public void getInsuredPersonInfo() throws ElemeApiException {
-//统一结算不能访问该接口获取身份信息
+        //统一结算不能访问该接口获取身份信息
         ElemeQueryInsuredPersonInfoRequest request = new ElemeQueryInsuredPersonInfoRequest();
         request.setAppid(appid);
         request.setUserId(userId);
