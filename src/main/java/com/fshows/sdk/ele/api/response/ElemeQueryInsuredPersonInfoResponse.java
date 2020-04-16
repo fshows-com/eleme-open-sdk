@@ -17,7 +17,7 @@
 package com.fshows.sdk.ele.api.response;
 
 import com.fshows.sdk.ele.api.ElemeResponse;
-import com.fshows.sdk.ele.api.request.ElemeQueryInsuredPersonInfoDetialRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryInsuredPersonInfoDetailRequest;
 import lombok.Data;
 
 /**
@@ -29,7 +29,7 @@ import lombok.Data;
 @Data
 public class ElemeQueryInsuredPersonInfoResponse extends ElemeResponse {
 
-    private ElemeQueryInsuredPersonInfoDetialRequest personInfo;
+    private ElemeQueryInsuredPersonInfoDetailRequest personInfo;
 
     private Integer showModify;
 

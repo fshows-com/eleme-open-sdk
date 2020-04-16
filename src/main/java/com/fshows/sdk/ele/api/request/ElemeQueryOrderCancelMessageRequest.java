@@ -27,10 +27,10 @@ import lombok.Data;
  * 获取取消原因列表接口（取消文案的返回）-入参
  *
  * @author CoderMa
- * @version ElemeQueryOrderCancelmessageRequest.java, v 0.1 2020-04-03 14:40 CoderMa
+ * @version ElemeQueryOrderCancelMessageRequest.java, v 0.1 2020-04-03 14:40 CoderMa
  */
 @Data
-public class ElemeQueryOrderCancelmessageRequest extends BaseRequest implements ElemeRequest<ElemeQueryOrderCancelMessageResponse> {
+public class ElemeQueryOrderCancelMessageRequest extends BaseRequest implements ElemeRequest<ElemeQueryOrderCancelMessageResponse> {
 
     /**
      * 订单号

@@ -21,60 +21,21 @@ import com.alibaba.fastjson.JSON;
 import com.fshows.sdk.ele.api.DefaultElemeClient;
 import com.fshows.sdk.ele.api.ElemeApiException;
 import com.fshows.sdk.ele.api.ElemeClient;
-import com.fshows.sdk.ele.api.request.ElemeAddTipRequest;
-import com.fshows.sdk.ele.api.request.ElemeAuthTokenRequest;
-import com.fshows.sdk.ele.api.request.ElemeCannelOrderRequest;
-import com.fshows.sdk.ele.api.request.ElemeCreateOrderRequest;
-import com.fshows.sdk.ele.api.request.ElemeCreateShopRequest;
-import com.fshows.sdk.ele.api.request.ElemeModifyShopRequest;
-import com.fshows.sdk.ele.api.request.ElemePreinsuranceRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryAmountRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryAvailableProductListRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryCancelPriceRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryGoodsInsurancePackageRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryInsuredPersonInfoRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryKnightInfoRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryOrderCancelmessageRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryOrderDetailRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryOrderPriceRequest;
-import com.fshows.sdk.ele.api.request.ElemeQueryShopListRequest;
-import com.fshows.sdk.ele.api.request.ElemeShopCategoryListRequest;
-import com.fshows.sdk.ele.api.request.ElemeShopDetailRequest;
-import com.fshows.sdk.ele.api.request.ElemeTokenRequest;
-import com.fshows.sdk.ele.api.request.ElemeUploadFileRequest;
-import com.fshows.sdk.ele.api.response.ElemeAddTipResponse;
-import com.fshows.sdk.ele.api.response.ElemeAuthTokenResponse;
-import com.fshows.sdk.ele.api.response.ElemeCannelOrderResponse;
-import com.fshows.sdk.ele.api.response.ElemeCreateOrderResponse;
-import com.fshows.sdk.ele.api.response.ElemeCreateShopResponse;
-import com.fshows.sdk.ele.api.response.ElemeModifyShopResponse;
-import com.fshows.sdk.ele.api.response.ElemePreinsuranceResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryAmountResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryAvailableProductListResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryCancelPriceResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryGoodsInsurancePackageResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryInsuredPersonInfoResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryKnightInfoResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryOrderCancelMessageResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryOrderDetailResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryOrderPriceResponse;
-import com.fshows.sdk.ele.api.response.ElemeQueryShopListResponse;
-import com.fshows.sdk.ele.api.response.ElemeShopCategoryListResponse;
-import com.fshows.sdk.ele.api.response.ElemeShopDetailResponse;
-import com.fshows.sdk.ele.api.response.ElemeTokenResponse;
-import com.fshows.sdk.ele.api.response.ElemeUploadFileResponse;
+import com.fshows.sdk.ele.api.request.*;
+import com.fshows.sdk.ele.api.response.*;
 import com.fshows.sdk.ele.api.utils.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import sun.misc.BASE64Encoder;
 
 import java.io.File;
+import java.util.Base64;
 import java.util.List;
 
 /**
  * @author CoderMa
  * @version DemoApi.java, v 0.1 2020-03-30 16:59 CoderMa
  */
+@SuppressWarnings("all")
 public class DemoApi {
 
     private static String serverUrl = "http://isv-pt.alta.elenet.me";
@@ -153,7 +114,7 @@ public class DemoApi {
         String fileName = "/Users/coderma/Downloads/yyzz.png";
         String fileType = FileUtil.getType(new File(fileName));
         byte[] bytes = FileUtil.readBytes(fileName);
-        String fileBinary = new BASE64Encoder().encode(bytes);
+        String fileBinary = Base64.getEncoder().encodeToString(bytes);
 
         ElemeUploadFileRequest request = new ElemeUploadFileRequest();
         request.setFileType(fileType);
@@ -271,7 +232,7 @@ public class DemoApi {
      */
     @Test
     public void getOroderCannelMessage() throws ElemeApiException {
-        ElemeQueryOrderCancelmessageRequest request = new ElemeQueryOrderCancelmessageRequest();
+        ElemeQueryOrderCancelMessageRequest request = new ElemeQueryOrderCancelMessageRequest();
         request.setOrderNo("");
         request.setUserId(userId);
         ElemeQueryOrderCancelMessageResponse response = elemeClient.execute(request, token, userId);

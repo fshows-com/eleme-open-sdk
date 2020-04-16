@@ -22,10 +22,10 @@ import lombok.Data;
  * 获取投保人信息接口
  *
  * @author CoderMa
- * @version ElemeQueryInsuredPersonInfoDetialRequest.java, v 0.1 2020-04-07 16:53 CoderMa
+ * @version ElemeQueryInsuredPersonInfoDetailRequest.java, v 0.1 2020-04-07 16:53 CoderMa
  */
 @Data
-public class ElemeQueryInsuredPersonInfoDetialRequest {
+public class ElemeQueryInsuredPersonInfoDetailRequest {
 
     private String personName;
 
