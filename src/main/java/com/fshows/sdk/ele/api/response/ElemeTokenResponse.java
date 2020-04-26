@@ -20,7 +20,7 @@ import com.fshows.sdk.ele.api.ElemeResponse;
 import lombok.Data;
 
 /**
- * 出参
+ * 接口请求获取凭证接口(Token)-出参
  *
  * @author CoderMa
  * @version ElemeTokenResponse.java, v 0.1 2020-03-30 16:29 CoderMa

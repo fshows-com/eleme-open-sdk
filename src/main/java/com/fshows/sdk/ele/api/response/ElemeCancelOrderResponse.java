@@ -23,10 +23,10 @@ import lombok.Data;
  * 订单取消接口-出参
  *
  * @author CoderMa
- * @version ElemeCannelOrderResponse.java, v 0.1 2020-04-07 10:20 CoderMa
+ * @version ElemeCancelOrderResponse.java, v 0.1 2020-04-07 10:20 CoderMa
  */
 @Data
-public class ElemeCannelOrderResponse extends ElemeResponse {
+public class ElemeCancelOrderResponse extends ElemeResponse {
 
     private Boolean result;
 

@@ -32,9 +32,15 @@ import lombok.Data;
 @Data
 public class ElemeQueryInsuredPersonInfoRequest extends BaseRequest implements ElemeRequest<ElemeQueryInsuredPersonInfoResponse> {
 
+    /**
+     * 用户id
+     */
     @JSONField(name = "user_id")
     private String userId;
 
+    /**
+     * 渠道appid
+     */
     @JSONField(name = "appid")
     private String appid;
 

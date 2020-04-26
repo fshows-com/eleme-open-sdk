@@ -32,12 +32,21 @@ import lombok.Data;
 @Data
 public class ElemeQueryKnightInfoRequest extends BaseRequest implements ElemeRequest<ElemeQueryKnightInfoResponse> {
 
+    /**
+     * 跑腿侧的订单号
+     */
     @JSONField(name = "order_no")
     private String orderNo;
 
+    /**
+     * 用户id
+     */
     @JSONField(name = "user_id")
     private String userId;
 
+    /**
+     * appid
+     */
     @JSONField(name = "appid")
     private String appid;
 

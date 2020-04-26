@@ -28,8 +28,14 @@ import lombok.Data;
 @Data
 public class ElemeUploadFileResponse extends ElemeResponse<ElemeResponse> {
 
+    /**
+     * 文件hash
+     */
     private String hash;
 
+    /**
+     * 文件路径
+     */
     private String url;
 
 }

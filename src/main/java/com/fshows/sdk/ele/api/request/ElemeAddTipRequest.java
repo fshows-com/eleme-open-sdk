@@ -32,15 +32,27 @@ import lombok.Data;
 @Data
 public class ElemeAddTipRequest extends BaseRequest implements ElemeRequest<ElemeAddTipResponse> {
 
+    /**
+     * 加小费金额(分)
+     */
     @JSONField(name = "add_tip_price")
     private Integer addTipPrice;
 
+    /**
+     * 待加小费的订单号
+     */
     @JSONField(name = "order_no")
     private String orderNo;
 
+    /**
+     * 渠道appid
+     */
     @JSONField(name = "appid")
     private String appid;
 
+    /**
+     * 调用方每次调用生成一个不重复的业务流水号
+     */
     @JSONField(name = "business_sn")
     private String businessSn;
 

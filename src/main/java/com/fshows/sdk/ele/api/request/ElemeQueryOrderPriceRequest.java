@@ -32,42 +32,81 @@ import lombok.Data;
 @Data
 public class ElemeQueryOrderPriceRequest extends BaseRequest implements ElemeRequest<ElemeQueryOrderPriceResponse> {
 
+    /**
+     * 用户id
+     */
     @JSONField(name = "user_id")
     private String userId;
 
+    /**
+     * 门店id
+     */
     @JSONField(name = "shop_id")
     private String shopId;
 
+    /**
+     * 询价指定的优惠券id;-1: 本次询价不指定优惠券	;0：使用默认的优惠券;其他有效的coupon_id: 使用指定coupon_id的优惠券
+     */
     @JSONField(name = "coupon_id")
     private String couponId;
 
+    /**
+     * 若指定优惠券id, 则需要传入上次询价返回的pk_id
+     */
     @JSONField(name = "pk_id")
     private String pkId;
 
+    /**
+     * 标品id
+     */
     @JSONField(name = "product_id")
     private String productId;
 
+    /**
+     * 收件人经度
+     */
     @JSONField(name = "customerLon")
     private String customerLon;
 
+    /**
+     * 收件人纬度
+     */
     @JSONField(name = "customerLat")
     private String customerLat;
 
+    /**
+     * 期望取货时间戳
+     */
     @JSONField(name = "expect_fetch_time")
     private String expectFetchTime;
 
+    /**
+     * 货品重量(g)
+     */
     @JSONField(name = "goods_weight")
     private String goodsWeight;
 
+    /**
+     * 货品价格, 单位:分 (注意: 需要和提单时传参的值一致)
+     */
     @JSONField(name = "goods_price")
     private String goodsPrice;
 
+    /**
+     * 订单小费, 单位:分 (注意: 需要和提单时传参的值一致)
+     */
     @JSONField(name = "order_tip")
     private String orderTip;
 
+    /**
+     * 订单来源(美团/饿了么/天猫), 详见下方接口说明的枚举
+     */
     @JSONField(name = "order_source")
     private String orderSource;
 
+    /**
+     * 核保单号，如果有购买货损险，传入核保接口返回的核保单号
+     */
     @JSONField(name = "insure_busi_order_no")
     private String insureBusiOrderNo;
 

@@ -21,8 +21,48 @@ import com.alibaba.fastjson.JSON;
 import com.fshows.sdk.ele.api.DefaultElemeClient;
 import com.fshows.sdk.ele.api.ElemeApiException;
 import com.fshows.sdk.ele.api.ElemeClient;
-import com.fshows.sdk.ele.api.request.*;
-import com.fshows.sdk.ele.api.response.*;
+import com.fshows.sdk.ele.api.request.ElemeAddTipRequest;
+import com.fshows.sdk.ele.api.request.ElemeAuthTokenRequest;
+import com.fshows.sdk.ele.api.request.ElemeCancelOrderRequest;
+import com.fshows.sdk.ele.api.request.ElemeCreateOrderRequest;
+import com.fshows.sdk.ele.api.request.ElemeCreateShopRequest;
+import com.fshows.sdk.ele.api.request.ElemeModifyShopRequest;
+import com.fshows.sdk.ele.api.request.ElemePreinsuranceRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryAmountRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryAvailableProductListRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryCancelPriceRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryGoodsInsurancePackageRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryInsuredPersonInfoRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryKnightInfoRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryOrderCancelMessageRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryOrderDetailRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryOrderPriceRequest;
+import com.fshows.sdk.ele.api.request.ElemeQueryShopListRequest;
+import com.fshows.sdk.ele.api.request.ElemeShopCategoryListRequest;
+import com.fshows.sdk.ele.api.request.ElemeShopDetailRequest;
+import com.fshows.sdk.ele.api.request.ElemeTokenRequest;
+import com.fshows.sdk.ele.api.request.ElemeUploadFileRequest;
+import com.fshows.sdk.ele.api.response.ElemeAddTipResponse;
+import com.fshows.sdk.ele.api.response.ElemeAuthTokenResponse;
+import com.fshows.sdk.ele.api.response.ElemeCancelOrderResponse;
+import com.fshows.sdk.ele.api.response.ElemeCreateOrderResponse;
+import com.fshows.sdk.ele.api.response.ElemeCreateShopResponse;
+import com.fshows.sdk.ele.api.response.ElemeModifyShopResponse;
+import com.fshows.sdk.ele.api.response.ElemePreinsuranceResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryAmountResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryAvailableProductListResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryCancelPriceResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryGoodsInsurancePackageResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryInsuredPersonInfoResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryKnightInfoResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryOrderCancelMessageResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryOrderDetailResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryOrderPriceResponse;
+import com.fshows.sdk.ele.api.response.ElemeQueryShopListResponse;
+import com.fshows.sdk.ele.api.response.ElemeShopCategoryListResponse;
+import com.fshows.sdk.ele.api.response.ElemeShopDetailResponse;
+import com.fshows.sdk.ele.api.response.ElemeTokenResponse;
+import com.fshows.sdk.ele.api.response.ElemeUploadFileResponse;
 import com.fshows.sdk.ele.api.utils.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -244,14 +284,14 @@ public class DemoApi {
      */
     @Test
     public void cannelOrder() throws ElemeApiException {
-        ElemeCannelOrderRequest request = new ElemeCannelOrderRequest();
+        ElemeCancelOrderRequest request = new ElemeCancelOrderRequest();
         request.setOrderNo("");
         request.setCancelCharge("100");
         request.setUserId(userId);
         request.setCancelReason("没有骑手接单");
         request.setOtherReason("自己输入的内容");
         request.setAppid(appid);
-        ElemeCannelOrderResponse response = elemeClient.execute(request, token, userId);
+        ElemeCancelOrderResponse response = elemeClient.execute(request, token, userId);
         System.out.println("response=" + JSON.toJSONString(response));
     }
 

@@ -32,27 +32,51 @@ import lombok.Data;
 @Data
 public class ElemePreinsuranceRequest extends BaseRequest implements ElemeRequest<ElemePreinsuranceResponse> {
 
+    /**
+     * 用户真实姓名
+     */
     @JSONField(name = "person_name")
     private String personName;
 
+    /**
+     * 身份证
+     */
     @JSONField(name = "person_idcard")
     private String personIdcard;
 
+    /**
+     * 手机号码
+     */
     @JSONField(name = "phone")
     private String phone;
 
+    /**
+     * 选择的货损险套餐编号id，根据getgoodsinsurancepackage获取
+     */
     @JSONField(name = "insured_plan_id")
     private String insuredPlanId;
 
+    /**
+     * 期望取货时间戳
+     */
     @JSONField(name = "expect_fetch_time")
     private String expectFetchTime;
 
+    /**
+     * 货物重量(单位：kg)
+     */
     @JSONField(name = "goods_weight")
     private String goodsWeight;
 
+    /**
+     * 用户id
+     */
     @JSONField(name = "user_id")
     private String userId;
 
+    /**
+     * 渠道appid
+     */
     @JSONField(name = "appid")
     private String appid;
 

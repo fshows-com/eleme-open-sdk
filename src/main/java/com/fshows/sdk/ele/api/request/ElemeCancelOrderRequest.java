@@ -20,33 +20,51 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fshows.sdk.ele.api.ElemeRequest;
 import com.fshows.sdk.ele.api.config.ElemeApiUrlConstant;
-import com.fshows.sdk.ele.api.response.ElemeCannelOrderResponse;
+import com.fshows.sdk.ele.api.response.ElemeCancelOrderResponse;
 import lombok.Data;
 
 /**
  * 订单取消接口-入参
  *
  * @author CoderMa
- * @version ElemeCannelOrderRequest.java, v 0.1 2020-04-07 09:56 CoderMa
+ * @version ElemeCancelOrderRequest.java, v 0.1 2020-04-07 09:56 CoderMa
  */
 @Data
-public class ElemeCannelOrderRequest extends BaseRequest implements ElemeRequest<ElemeCannelOrderResponse> {
+public class ElemeCancelOrderRequest extends BaseRequest implements ElemeRequest<ElemeCancelOrderResponse> {
 
+    /**
+     * 跑腿这边的订单号
+     */
     @JSONField(name = "order_no")
     private String orderNo;
 
+    /**
+     * 预取消接口返回的价格，单位都是分
+     */
     @JSONField(name = "cancel_charge")
     private String cancelCharge;
 
+    /**
+     * 用户id
+     */
     @JSONField(name = "user_id")
     private String userId;
 
+    /**
+     * 取消原因列表接口返回的文案，选填，
+     */
     @JSONField(name = "cancel_reason")
     private String cancelReason;
 
+    /**
+     * 其他原因，需要用户手动输入
+     */
     @JSONField(name = "other_reason")
     private String otherReason;
 
+    /**
+     * appid
+     */
     @JSONField(name = "appid")
     private String appid;
 
@@ -61,7 +79,7 @@ public class ElemeCannelOrderRequest extends BaseRequest implements ElemeRequest
     }
 
     @Override
-    public Class<ElemeCannelOrderResponse> getResponseClass() {
-        return ElemeCannelOrderResponse.class;
+    public Class<ElemeCancelOrderResponse> getResponseClass() {
+        return ElemeCancelOrderResponse.class;
     }
 }

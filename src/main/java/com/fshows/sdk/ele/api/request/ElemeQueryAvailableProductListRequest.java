@@ -32,15 +32,27 @@ import lombok.Data;
 @Data
 public class ElemeQueryAvailableProductListRequest extends BaseRequest implements ElemeRequest<ElemeQueryAvailableProductListResponse> {
 
+    /**
+     * 店铺id
+     */
     @JSONField(name = "shop_id")
     private String shopId;
 
+    /**
+     * 收件人经度
+     */
     @JSONField(name = "customer_lon")
     private String customerLon;
 
+    /**
+     * 收件人纬度
+     */
     @JSONField(name = "customer_lat")
     private String customerLat;
 
+    /**
+     * 期望取货时间戳
+     */
     @JSONField(name = "expect_fetch_time")
     private String expectFetchTime;
 

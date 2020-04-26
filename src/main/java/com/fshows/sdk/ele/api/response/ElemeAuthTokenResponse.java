@@ -29,12 +29,12 @@ import lombok.Data;
 public class ElemeAuthTokenResponse extends ElemeResponse<ElemeResponse> {
 
     /**
-     *
+     * 授权token
      */
     private String authToken;
 
     /**
-     *
+     * 超时时间
      */
     private Integer authTokenExpireAt;
 
