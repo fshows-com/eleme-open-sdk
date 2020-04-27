@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSON;
 import com.fshows.sdk.ele.api.DefaultElemeClient;
 import com.fshows.sdk.ele.api.ElemeApiException;
 import com.fshows.sdk.ele.api.ElemeClient;
+import com.fshows.sdk.ele.api.Signer;
 import com.fshows.sdk.ele.api.request.ElemeAddTipRequest;
 import com.fshows.sdk.ele.api.request.ElemeAuthTokenRequest;
 import com.fshows.sdk.ele.api.request.ElemeCancelOrderRequest;
@@ -63,6 +64,7 @@ import com.fshows.sdk.ele.api.response.ElemeShopCategoryListResponse;
 import com.fshows.sdk.ele.api.response.ElemeShopDetailResponse;
 import com.fshows.sdk.ele.api.response.ElemeTokenResponse;
 import com.fshows.sdk.ele.api.response.ElemeUploadFileResponse;
+import com.fshows.sdk.ele.api.utils.MD5Utils;
 import com.fshows.sdk.ele.api.utils.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,6 +72,8 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author CoderMa
@@ -136,6 +140,47 @@ public class DemoApi {
     }
 
     /**
+     * 授权页url
+     */
+    @Test
+    public void generateAuthUrl() throws ElemeApiException {
+        String callbackUrl = "http://xxxxxxx.com/xxxx/xxx";
+        ElemeAuthTokenRequest request = new ElemeAuthTokenRequest();
+        request.setAppid(appid);
+        request.setTime(System.currentTimeMillis() / 1000L);
+        ElemeAuthTokenResponse response = elemeClient.execute(request);
+
+        TreeMap<String, Object> sortMap = new TreeMap<>();
+        sortMap.put("appid", appid);
+        sortMap.put("auth_callback_url", callbackUrl);
+        sortMap.put("auth_token", response.getAuthToken());
+        sortMap.put("redirect_url", callbackUrl);
+        String sourceUri = Signer.buildUri(sortMap);
+
+        //Step3：对auth_token、appid、auth_callback_url、redirect_url这4个原始参数加密，生成sign
+        String sign = MD5Utils.md5(Signer.encode(sourceUri));
+
+        //Setp4: 对auth_token、appid、auth_callback_url、redirect_url、sign这5个参数分别进行urlencode
+        sortMap.put("sign", sign);
+
+        //Setp5: 将urlencode后的参数 通过& 拼接
+        StringBuilder urlParam = new StringBuilder();
+        for (Map.Entry<String, Object> entry : sortMap.entrySet()) {
+            urlParam.append(String.format("%s=%s&", entry.getKey(), Signer.encode(entry.getValue().toString())));
+        }
+        String param = urlParam.deleteCharAt(urlParam.length() - 1).toString();
+
+        //Step6: 对拼接后的字符串进行整体urlencode
+        String paramEncode = Signer.encode(param);
+
+        //Step7: 拼接 {开放平台域名}{Step6生成的字符串}
+        String authUrl = String.format("%s/static/open/oauth-pc/#params=%s", serverUrl, paramEncode);
+        System.out.println("authUrl=" + authUrl);
+
+        //Step8: 登陆授权页后饿了么会调用回调地址告知userId
+    }
+
+    /**
      * 查询余额接口
      */
     @Test
@@ -175,12 +220,13 @@ public class DemoApi {
         request.setUserId(userId);
         request.setAppid(appid);
         request.setOutShopId(outStoreId);
-        request.setShopName("小码烧烤");
-        request.setShopPhone("181xxxxx367");
-        request.setShopPoiAddress("杭州市西湖区丰盛九玺12撞21楼");
-        request.setShopDetailAddress("杭州市西湖区丰盛九玺12撞21楼");//0000,
-        request.setShopLongitude("120.068390");
-        request.setShopLatitude("30.328831");
+        request.setShopName("Fs烧烤舍");
+        request.setShopPhone("181****367");
+        request.setShopPoiAddress("北京市海淀区彩虹大厦");
+        request.setShopDetailAddress("12撞21楼");//0000,
+        request.setShopLongitude("116.307892");
+        request.setShopLatitude("40.039115");
+
         //105:夜宵烧烤
         request.setShopCategory("105");
         request.setShopOwnerName("张三");
@@ -205,11 +251,11 @@ public class DemoApi {
         request.setAppid(appid);
         request.setShopId(elemeShopId);
         request.setShopName("小马烧烤2");
-        request.setShopPhone("181xxxxx367");
-        request.setShopPoiAddress("杭州市西湖区丰盛九玺12撞22楼");
-        request.setShopDetailAddress("杭州市西湖区丰盛九玺12撞22楼");//0000,
-        request.setShopLongitude("120.068390");
-        request.setShopLatitude("30.328831");
+        request.setShopPhone("181****367");
+        request.setShopPoiAddress("北京市海淀区彩虹大厦");
+        request.setShopDetailAddress("1号楼21层");//0000,
+        request.setShopLongitude("116.307892");
+        request.setShopLatitude("40.039115");
         //105:夜宵烧烤
         request.setShopCategory("105");
 
@@ -302,9 +348,9 @@ public class DemoApi {
     public void getAvailableProductList() throws ElemeApiException {
         ElemeQueryAvailableProductListRequest request = new ElemeQueryAvailableProductListRequest();
         request.setShopId(elemeShopId);
-        request.setCustomerLon("");
-        request.setCustomerLat("");
-        request.setExpectFetchTime("1586232000000");
+        request.setCustomerLat("40.0404014800");
+        request.setCustomerLon("116.3140068900");
+        request.setExpectFetchTime("1587988800");
         List<ElemeQueryAvailableProductListResponse> responses = elemeClient.executeArray(request, token, userId);
         System.out.println("response=" + JSON.toJSONString(responses));
     }

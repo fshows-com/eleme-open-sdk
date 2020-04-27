@@ -54,16 +54,15 @@ public class Signer {
                 sortMap.put(o.getKey(), o.getValue());
             }
         }
-
-        String encodeUrl = buildUri(sortMap);
+        String uri = buildUri(sortMap);
+        String encodeUrl = encode(uri);
         LogUtil.debug(log, "encodeUrl={}", encodeUrl);
-
         String sign = MD5Utils.md5(encodeUrl);
         LogUtil.debug(log, "sign={}", sign);
         return sign;
     }
 
-    private static String buildUri(TreeMap<String, Object> sortMap) {
+    public static String buildUri(TreeMap<String, Object> sortMap) {
         if (sortMap.isEmpty()) {
             return StringPool.EMPTY;
         }
@@ -72,12 +71,16 @@ public class Signer {
             urlParam.append(sort.getKey()).append("=").append(sort.getValue());
             urlParam.append("&");
         }
+        return urlParam.deleteCharAt(urlParam.length() - 1).toString();
+    }
+
+    public static String encode(String uri) {
         try {
-            urlParam = urlParam.deleteCharAt(urlParam.length() - 1);
-            return URLEncoder.encode(urlParam.toString(), "utf-8");
+            return URLEncoder.encode(uri, "utf-8");
         } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
+            LogUtil.error(log, "encode error,uri={},error={}", uri, e);
         }
+        return null;
     }
 
 }

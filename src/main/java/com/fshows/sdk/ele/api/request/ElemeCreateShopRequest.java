@@ -64,7 +64,7 @@ public class ElemeCreateShopRequest extends BaseRequest implements ElemeRequest<
     /**
      * 经纬度地址
      */
-    @JSONField(name = "shp_poi_address")
+    @JSONField(name = "shop_poi_address")
     private String shopPoiAddress;
 
     /**
