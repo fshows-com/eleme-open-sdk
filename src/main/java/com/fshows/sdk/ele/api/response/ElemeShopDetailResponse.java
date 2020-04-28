@@ -29,24 +29,34 @@ import lombok.Data;
 public class ElemeShopDetailResponse extends ElemeResponse {
 
     /**
-     * userId
-     */
-    private String userId;
-
-    /**
-     * appid
-     */
-    private String appid;
-
-    /**
      * 外部门店id，接入方的门店id
      */
     private String outShopId;
 
     /**
+     * 具体地址
+     */
+    private String shopDetailAddress;
+
+    /**
+     * 商户纬度(高德坐标系)
+     */
+    private String shopLatitude;
+
+    /**
+     * 商户经度(高德坐标系)
+     */
+    private String shopLongitude;
+
+    /**
      * 商店名
      */
     private String shopName;
+
+    /**
+     * 商店拥有者姓名
+     */
+    private String shopOwnerName;
 
     /**
      * 商户手机号
@@ -57,70 +67,5 @@ public class ElemeShopDetailResponse extends ElemeResponse {
      * 经纬度地址
      */
     private String shopPoiAddress;
-
-    /**
-     * 具体地址
-     */
-    private String shopDetailAddress;
-
-    /**
-     * 商户经度(高德坐标系)
-     */
-    private String shopLongitude;
-
-    /**
-     * 商户纬度(高德坐标系)
-     */
-    private String shopLatitude;
-
-    /**
-     * 商户品类
-     */
-    private String shopCategory;
-
-    /**
-     * 商店拥有者姓名
-     */
-    private String shopOwnerName;
-
-    /**
-     * 身份证号
-     */
-    private String shopOwnerIdcard;
-
-    /**
-     * 调用图片上传身份证后，接口后返回的hash
-     */
-    private String shopOwnerIdcardHash;
-
-    /**
-     * 调用图片上传身份证后，接口后返回的url
-     */
-    private String shopOwnerIdcardUrl;
-
-    /**
-     * 统一社会信用代码
-     */
-    private String suCode;
-
-    /**
-     * 营业执照的hash，调用图片上传接口
-     */
-    private String businessLicenceHash;
-
-    /**
-     * 营业执照的url，调用图片上传接口
-     */
-    private String businessLicenceUrl;
-
-    /**
-     * 食品安全执照的hash，调用图片上传接口
-     */
-    private String foodLicensePicHash;
-
-    /**
-     * 食品安全执照的url，调用图片上传接口
-     */
-    private String foodLicensePicUrl;
 
 }
