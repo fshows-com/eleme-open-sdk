@@ -65,13 +65,13 @@ public class ElemeQueryOrderPriceRequest extends BaseRequest implements ElemeReq
     /**
      * 收件人经度
      */
-    @JSONField(name = "customerLon")
+    @JSONField(name = "customer_lon")
     private String customerLon;
 
     /**
      * 收件人纬度
      */
-    @JSONField(name = "customerLat")
+    @JSONField(name = "customer_lat")
     private String customerLat;
 
     /**

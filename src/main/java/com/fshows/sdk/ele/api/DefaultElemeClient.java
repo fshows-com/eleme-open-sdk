@@ -108,6 +108,9 @@ public class DefaultElemeClient implements ElemeClient {
                 case PARAM_ERROR:
                     //错误信息展示错误字段
                     ElemeParamErrorResponse paramErrorResponse = JSON.parseObject(elemeResponse.getData(), ElemeParamErrorResponse.class);
+                    if (null == paramErrorResponse) {
+                        throw new ElemeApiException(elemeResponse.getErrno(), "{0}", elemeResponse.getErrmsg());
+                    }
                     throw new ElemeApiException(elemeResponse.getErrno(), "{0}:{1}", paramErrorResponse.getErrorKey(), elemeResponse.getErrmsg());
                 default:
                     throw new ElemeApiException(elemeResponse.getErrno(), elemeResponse.getErrmsg());
