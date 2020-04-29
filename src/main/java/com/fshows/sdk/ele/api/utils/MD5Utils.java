@@ -16,7 +16,6 @@
  */
 package com.fshows.sdk.ele.api.utils;
 
-import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -26,19 +25,24 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5Utils {
 
-    public static String md5(String plainText) {
-        byte[] secretBytes = null;
+    private static final String[] HEX_ARRAY = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+
+    public static String md5(String rawString) {
         try {
-            secretBytes = MessageDigest.getInstance(StringPool.MD5).digest(
-                    plainText.getBytes());
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(rawString.getBytes());
+            byte[] rawBit = md.digest();
+            String outputMD5 = " ";
+            for (int i = 0; i < 16; i++) {
+                outputMD5 = outputMD5 + HEX_ARRAY[rawBit[i] >>> 4 & 0x0f];
+                outputMD5 = outputMD5 + HEX_ARRAY[rawBit[i] & 0x0f];
+            }
+            return outputMD5.trim();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("没有md5");
+            System.out.println("计算MD5值发生错误");
+            e.printStackTrace();
         }
-        String md5code = new BigInteger(1, secretBytes).toString(16);
-        for (int i = 0; i < 32 - md5code.length(); i++) {
-            md5code = StringPool.ZERO + md5code;
-        }
-        return md5code;
+        return null;
     }
 
 }
