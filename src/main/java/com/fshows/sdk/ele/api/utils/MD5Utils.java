@@ -37,7 +37,7 @@ public class MD5Utils {
                 outputMD5 = outputMD5 + HEX_ARRAY[rawBit[i] >>> 4 & 0x0f];
                 outputMD5 = outputMD5 + HEX_ARRAY[rawBit[i] & 0x0f];
             }
-            return outputMD5.trim();
+            return outputMD5.trim().toLowerCase();
         } catch (NoSuchAlgorithmException e) {
             System.out.println("计算MD5值发生错误");
             e.printStackTrace();
