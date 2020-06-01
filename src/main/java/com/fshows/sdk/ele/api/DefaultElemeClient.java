@@ -25,6 +25,7 @@ import com.fshows.sdk.ele.api.utils.StringUtils;
 import lombok.Data;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,10 @@ public class DefaultElemeClient implements ElemeClient {
     @Override
     public <T extends ElemeResponse<ElemeResponse>> List<T> executeArray(ElemeRequest<T> request, String token, String userId) throws ElemeApiException {
         String data = executeString(request, token, userId);
+        //data会有返回false的情况，需要做个特殊处理
+        if (data.equals(StringPool.FALSE)) {
+            return new ArrayList<>();
+        }
         List<T> response = JSON.parseArray(data, request.getResponseClass());
         return response;
     }
@@ -94,6 +99,7 @@ public class DefaultElemeClient implements ElemeClient {
         } catch (IOException e) {
             throw new ElemeApiException(e);
         }
+        response = "{\"errno\":0,\"errmsg\":\"success\",\"data\":\"false\",\"appid\":\"shouzhan\",\"sign\":\"b649f517df21c1046174a4bfc276d0aa\",\"time\":1590991399}";
         ElemeResponse<ElemeResponse> elemeResponse = JSON.parseObject(response, ElemeResponse.class);
         if (null == elemeResponse) {
             throw new ElemeApiException("000001", "返回值为空！");

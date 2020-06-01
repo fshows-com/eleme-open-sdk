@@ -27,13 +27,10 @@ public class BaseRequest {
     @JSONField(serialize = false)
     private String businessParam;
 
-    /**
-     * Setter method for property <tt>businessParam</tt>.
-     *
-     * @param businessParam value to be assigned to property businessParam
-     */
-    public void setBusinessParam(String businessParam) {
-        this.businessParam = businessParam;
-    }
+    @JSONField(serialize = false)
+    private String apiMethodName;
+
+    @JSONField(serialize = false)
+    private Class responseClass;
 
 }
