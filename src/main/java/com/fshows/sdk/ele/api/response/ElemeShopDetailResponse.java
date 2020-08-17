@@ -61,12 +61,12 @@ public class ElemeShopDetailResponse extends ElemeResponse {
     /**
      * 认证状态
      */
-    private Boolean verifyStatus;
+    private Integer verifyStatus;
 
     /**
      * 认证状态
      */
-    private Boolean verifyStatusName;
+    private String verifyStatusName;
 
     /**
      * 商户手机号
