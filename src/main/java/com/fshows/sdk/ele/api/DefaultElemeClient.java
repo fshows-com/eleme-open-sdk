@@ -99,7 +99,6 @@ public class DefaultElemeClient implements ElemeClient {
         } catch (IOException e) {
             throw new ElemeApiException(e);
         }
-        response = "{\"errno\":0,\"errmsg\":\"success\",\"data\":\"false\",\"appid\":\"shouzhan\",\"sign\":\"b649f517df21c1046174a4bfc276d0aa\",\"time\":1590991399}";
         ElemeResponse<ElemeResponse> elemeResponse = JSON.parseObject(response, ElemeResponse.class);
         if (null == elemeResponse) {
             throw new ElemeApiException("000001", "返回值为空！");

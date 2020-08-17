@@ -59,6 +59,16 @@ public class ElemeShopDetailResponse extends ElemeResponse {
     private String shopOwnerName;
 
     /**
+     * 认证状态
+     */
+    private Boolean verifyStatus;
+
+    /**
+     * 认证状态
+     */
+    private Boolean verifyStatusName;
+
+    /**
      * 商户手机号
      */
     private String shopPhone;
